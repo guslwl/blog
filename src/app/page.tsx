@@ -40,18 +40,18 @@ const externalLinks: Link[] = [
     url: "https://github.com/guslwl",
     icon: <SiGithub />,
   },
-  {
-    name: "YouTube",
-    description: "watch me talk",
-    url: "https://youtube.com/@guslwl1",
-    icon: <SiYoutube className="fill-[#FF0032] dark:fill-zinc-200" />,
-  },
-  {
-    name: "X (formerly Twitter)",
-    description: "read my mind",
-    url: "https://x.com/guslwl",
-    icon: <XLogo />,
-  },
+  // {
+  //   name: "YouTube",
+  //   description: "watch me talk",
+  //   url: "https://youtube.com/",
+  //   icon: <SiYoutube className="fill-[#FF0032] dark:fill-zinc-200" />,
+  // },
+  // {
+  //   name: "X (formerly Twitter)",
+  //   description: "read my mind",
+  //   url: "https://x.com/guslwl",
+  //   icon: <XLogo />,
+  // },
 ];
 
 const ExternalLink = (link: Link) => {
@@ -80,8 +80,7 @@ export default function HomePage() {
   return (
     <div className="flex flex-col gap-6">
       <p className="text-sm">
-        i should place a nice and short description here, but for now this
-        simple placeholder will do the job xD
+        HI! I'm a Computer Science student and an aspiring software developer who lives to build games
       </p>
       <div className="divide-y divide-zinc-400 overflow-hidden rounded ring-1 ring-zinc-400 dark:divide-zinc-500 dark:ring-zinc-500">
         {externalLinks.map((link: Link) => (
