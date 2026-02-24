@@ -17,7 +17,7 @@ const projects: Project[] = [
     description:
       "A clone of `tabnews.com.br` website, developed during the curso.dev course",
     url: "https://clonetabnews.guslwl.dev",
-    imageUrl: "/projects/css2wind.png",
+    imageUrl: "/projects/tabnews.webp",
     githubUrl: "https://github.com/guslwl/clone-tabnews",
     technologies: (
       <div className="flex items-center gap-x-3">
@@ -33,51 +33,28 @@ const projects: Project[] = [
       </div>
     ),
   },
+  {
+    name: "fini",
+    description:
+      "A finance app that respects your privacy and is designed for normal people.",
+    url: "https://github.com/guslwl/fini",
+    imageUrl: "/projects/fini.png",
+    githubUrl: "https://github.com/guslwl/fini",
+    technologies: (
+      <div className="flex items-center gap-x-3">
+        <span className="rounded-full bg-[#007ACC] px-2.5 py-0.5 text-sm text-zinc-100 dark:bg-inherit dark:text-zinc-200 dark:ring-1 dark:ring-zinc-500">
+          JavaScript
+        </span>
+        <span className="rounded-full bg-[#38BDF9] px-2.5 py-0.5 text-sm text-zinc-950 dark:bg-inherit dark:text-zinc-200 dark:ring-1 dark:ring-zinc-500">
+          React
+        </span>
+        <span className="rounded-full bg-black px-2.5 py-0.5 text-sm text-zinc-100 dark:bg-inherit dark:text-zinc-200 dark:ring-1 dark:ring-zinc-500">
+          Electron
+        </span>
+      </div>
+    ),
+  },
 ];
-//   {
-//     name: "King's Cross Cinema Schedule",
-//     description:
-//       "A simpler way to visualize the movies in the Everyman in the Canal 2025 in London. I watched Mean Girls and it was amazing.",
-//     url: "https://kings-cross-cinema-schedule-2025.vercel.app/",
-//     imageUrl: "/projects/cinema-schedule.png",
-//     githubUrl: "https://github.com/LukeberryPi/kings-cross-cinema-website",
-//     technologies: (
-//       <div className="flex items-center gap-x-3">
-//         <span className="rounded-full bg-[#FF5D01] px-2.5 py-0.5 text-sm text-zinc-100 dark:bg-inherit dark:text-inherit dark:ring-1 dark:ring-zinc-500">
-//           Astro
-//         </span>
-//         <span className="rounded-full bg-[#38BDF9] px-2.5 py-0.5 text-sm text-zinc-950 dark:bg-inherit dark:text-inherit dark:ring-1 dark:ring-zinc-500">
-//           Tailwind
-//         </span>
-//         <span className="rounded-full bg-black px-2.5 py-0.5 text-sm text-zinc-100 dark:bg-none dark:ring-1 dark:ring-zinc-500">
-//           Vercel
-//         </span>
-//       </div>
-//     ),
-//   },
-//   {
-//     name: "phived",
-//     description:
-//       "Stop procrastinating by dealing with five tasks at a time. If you want to add more tasks you need to resolve a previous one. Surprisingly effective.",
-//     url: "https://phived.com",
-//     imageUrl: "/projects/phived.png",
-//     githubUrl: "https://github.com/LukeberryPi/phived",
-//     technologies: (
-//       <div className="flex items-center gap-x-3">
-//         <span className="rounded-full bg-[#00D8FE] px-2.5 py-0.5 text-sm text-zinc-950 dark:bg-inherit dark:text-inherit dark:ring-1 dark:ring-zinc-500">
-//           React
-//         </span>
-//         <span className="rounded-full bg-[#38BDF9] px-2.5 py-0.5 text-sm text-zinc-950 dark:bg-inherit dark:text-inherit dark:ring-1 dark:ring-zinc-500">
-//           TailwindCSS
-//         </span>
-//         <span className="rounded-full bg-gradient-to-r from-[#926AFE] to-[#49C7FF] px-2.5 py-0.5 text-sm text-zinc-100 dark:bg-none dark:ring-1 dark:ring-zinc-500">
-//           Vite
-//         </span>
-//       </div>
-//     ),
-//   },
-// ];
-
 function ProjectCard({
   name,
   description,
