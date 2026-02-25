@@ -1,14 +1,20 @@
 import { Article, getArticles } from "@/src/lib/articles";
+import { detectRequestLocaleFromAcceptLanguage, t } from "@/src/lib/i18n";
 import moment from "moment";
 import Link from "next/link";
+import { headers } from "next/headers";
 // import { Tag } from "./[slug]/page";
 
 export default async function ArticlesPage() {
+  const locale = detectRequestLocaleFromAcceptLanguage(
+    headers().get("accept-language"),
+  );
+  const dict = t(locale);
   const articles = getArticles();
   return (
     <div>
       <h1 className="mb-16 mt-4 text-center text-5xl max-sm:text-4xl">
-        Articles
+        {dict.articles.title}
       </h1>
 
       {/* TODO: add tags filter (OR between all selections)
@@ -24,7 +30,9 @@ export default async function ArticlesPage() {
             <div className="flex gap-1 gap-x-2 max-sm:flex-col sm:items-center">
               {article.title}{" "}
               <span className="flex gap-2 text-sm text-zinc-500 dark:text-zinc-400">
-                {article?.tags?.map((tag) => <span key={tag}>#{tag}</span>)}
+                {article?.tags?.map((tag) => (
+                  <span key={tag}>#{tag}</span>
+                ))}
               </span>
             </div>
             <span className="text-zinc-500 max-sm:text-sm dark:text-zinc-400">

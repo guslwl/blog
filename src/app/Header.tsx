@@ -4,6 +4,7 @@ import { ChevronLeft, Moon, Sun, Triangle } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useI18n } from "../components/i18n-provider";
 
 function isThemeSetToDark() {
   if (window == undefined) return;
@@ -18,6 +19,7 @@ function isThemeSetToDark() {
 export default function Header() {
   const path = usePathname();
   const isHome = path === "/";
+  const { locale, toggleLocale, dict } = useI18n();
   const [isDarkMode, setIsDarkMode] = useState(isThemeSetToDark());
 
   useEffect(() => {
@@ -46,7 +48,7 @@ export default function Header() {
         <Link
           className={`group relative -m-12 -my-2 -mr-4 flex items-center rounded py-2 pl-12 pr-4 ${isHome ? "ring-0" : "sm:hover:ring-1"} ring-sky-500 transition-transform max-sm:text-center dark:ring-sky-600`}
           href="/"
-          aria-label="Back to home"
+          aria-label={dict.header.backToHomeAria}
         >
           <div
             className={`${isHome ? "hidden" : "absolute"} left-1 flex size-4 h-full w-12 items-center px-2`}
@@ -56,15 +58,22 @@ export default function Header() {
           <div className="flex flex-col max-sm:items-center">
             Gustavo Souza
             <span className="text-zinc-500 dark:text-zinc-400">
-              Software Developer
+              {dict.header.role}
             </span>
           </div>
         </Link>
         <div className="flex items-center gap-4">
           <button
+            onClick={() => toggleLocale()}
+            className="rounded px-2 py-px ring-sky-500 transition-transform sm:hover:ring-1 dark:ring-sky-600"
+            aria-label={dict.header.toggleLanguageAria}
+          >
+            {locale === "en" ? "PT-BR" : "EN"}
+          </button>
+          <button
             onClick={() => toggleTheme()}
             className="group relative flex items-center"
-            aria-label="Toggle theme"
+            aria-label={dict.header.toggleThemeAria}
           >
             {isDarkMode ? (
               <Moon
@@ -81,10 +90,10 @@ export default function Header() {
           <Link
             className="group relative rounded px-2 py-px ring-sky-500 transition-transform sm:hover:ring-1 dark:ring-sky-600"
             href="/projects"
-            aria-label="View projects"
+            aria-label={dict.header.viewProjectsAria}
             aria-current={path === "/projects" ? "page" : undefined}
           >
-            /projects
+            {dict.nav.projects}
             <Triangle
               aria-hidden="true"
               className="absolute left-1/2 mt-1 hidden size-2 fill-sky-500 text-zinc-800 group-aria-[current=page]:block dark:fill-sky-600 dark:text-transparent"
@@ -93,10 +102,10 @@ export default function Header() {
           <Link
             className="group relative rounded px-2 py-px ring-sky-500 transition-transform sm:hover:ring-1 dark:ring-sky-600"
             href="/articles"
-            aria-label="View articles"
+            aria-label={dict.header.viewArticlesAria}
             aria-current={path.startsWith("/articles") ? "page" : undefined}
           >
-            /articles
+            {dict.nav.articles}
             <Triangle
               aria-hidden="true"
               className="absolute left-1/2 mt-1 hidden size-2 fill-sky-500 text-zinc-800 group-aria-[current=page]:block dark:fill-sky-600 dark:text-transparent"
@@ -105,10 +114,10 @@ export default function Header() {
           <Link
             className="group relative rounded px-2 py-px ring-sky-500 transition-transform sm:hover:ring-1 dark:ring-sky-600"
             href="/about"
-            aria-label="View about page"
+            aria-label={dict.header.viewAboutAria}
             aria-current={path === "/about" ? "page" : undefined}
           >
-            /about
+            {dict.nav.about}
             <Triangle
               aria-hidden="true"
               className="absolute left-1/2 mt-1 hidden size-2 fill-sky-500 text-zinc-800 group-aria-[current=page]:block dark:fill-sky-600 dark:text-transparent"

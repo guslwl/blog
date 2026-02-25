@@ -1,6 +1,9 @@
+"use client";
+
 import { GitBranch, Globe } from "lucide-react";
 import Image from "next/image";
 import { ReactNode } from "react";
+import { useI18n } from "../../components/i18n-provider";
 
 interface Project {
   name: string;
@@ -9,13 +12,13 @@ interface Project {
   githubUrl: string;
   url: string;
   technologies: ReactNode;
+  visitWebsiteLabel: string;
+  viewCodeLabel: string;
 }
 
-const projects: Project[] = [
+const commonProjects = [
   {
     name: "clone-tabnews",
-    description:
-      "A clone of `tabnews.com.br` website, developed during the curso.dev course",
     url: "https://clonetabnews.guslwl.dev",
     imageUrl: "/projects/tabnews.webp",
     githubUrl: "https://github.com/guslwl/clone-tabnews",
@@ -35,8 +38,6 @@ const projects: Project[] = [
   },
   {
     name: "fini",
-    description:
-      "A finance app that respects your privacy and is designed for normal people.",
     url: "https://github.com/guslwl/fini",
     imageUrl: "/projects/fini.png",
     githubUrl: "https://github.com/guslwl/fini",
@@ -62,6 +63,8 @@ function ProjectCard({
   githubUrl,
   url,
   technologies,
+  visitWebsiteLabel,
+  viewCodeLabel,
 }: Project) {
   return (
     <div className="dark:zinc-500 flex-col divide-y divide-zinc-400 overflow-hidden rounded ring-1 ring-zinc-400 dark:divide-zinc-500 dark:ring-zinc-500">
@@ -84,14 +87,14 @@ function ProjectCard({
           target="_blank"
           className="flex grow items-center justify-center gap-2 py-4 transition-transform sm:hover:bg-zinc-100 sm:dark:hover:bg-zinc-800"
         >
-          <Globe strokeWidth={1.4} className="size-5" /> Visit website
+          <Globe strokeWidth={1.4} className="size-5" /> {visitWebsiteLabel}
         </a>
         <a
           href={githubUrl}
           target="_blank"
           className="flex grow items-center justify-center gap-2 py-4 transition-transform sm:hover:bg-zinc-100 sm:dark:hover:bg-zinc-800"
         >
-          <GitBranch strokeWidth={1.4} className="size-5" /> View code
+          <GitBranch strokeWidth={1.4} className="size-5" /> {viewCodeLabel}
         </a>
       </div>
     </div>
@@ -99,10 +102,26 @@ function ProjectCard({
 }
 
 export default function ProjectsPage() {
+  const { dict } = useI18n();
+  const projects: Project[] = [
+    {
+      ...commonProjects[0],
+      description: dict.projects.items.cloneTabnewsDescription,
+      visitWebsiteLabel: dict.projects.visitWebsite,
+      viewCodeLabel: dict.projects.viewCode,
+    },
+    {
+      ...commonProjects[1],
+      description: dict.projects.items.finiDescription,
+      visitWebsiteLabel: dict.projects.visitWebsite,
+      viewCodeLabel: dict.projects.viewCode,
+    },
+  ];
+
   return (
     <>
       <h1 className="mb-16 mt-4 text-center text-5xl max-sm:text-4xl">
-        Projects
+        {dict.projects.title}
       </h1>
       <div className="space-y-20">
         {projects.map((project) => (

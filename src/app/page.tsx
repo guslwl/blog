@@ -1,3 +1,5 @@
+"use client";
+
 import {
   SiGithub,
   SiLinkedin,
@@ -6,6 +8,7 @@ import {
 import { ArrowUpRight, Download, Send } from "lucide-react";
 import Link from "next/link";
 import { ReactNode } from "react";
+import { useI18n } from "../components/i18n-provider";
 
 const XLogo = () => {
   return (
@@ -27,20 +30,29 @@ interface Link {
   icon?: ReactNode;
 }
 
-const externalLinks: Link[] = [
-  {
-    name: "LinkedIn",
-    description: "follow my career",
-    url: "https://linkedin.com/in/guslwl",
-    icon: <SiLinkedin className="fill-[#0077B5] dark:fill-zinc-200" />,
-  },
-  {
-    name: "GitHub",
-    description: "steal my code",
-    url: "https://github.com/guslwl",
-    icon: <SiGithub />,
-  },
-];
+function HomeIntroEn() {
+  return (
+    <p className="text-sm">
+      Hello there! <br />
+      <br /> I&apos;m a <strong>Computer Science student</strong> by day and an
+      aspiring <strong>game dev</strong> by night. I&apos;m currently
+      sharpening my Full Stack skills by building fini, a personal finance app,
+      while also working toward my ultimate goal: living off my own indie games.
+    </p>
+  );
+}
+
+function HomeIntroPtBr() {
+  return (
+    <p className="text-sm">
+  Hello there! <br />
+  <br /> Sou <strong>estudante de Ciência da Computação</strong> durante o dia e
+  aspirante a <strong>game dev</strong> à noite. Atualmente, estou polindo minhas
+  habilidades Full Stack desenvolvendo o fini, um app de finanças pessoais,
+  enquanto também trabalho em direção ao meu objetivo final: viver dos meus próprios jogos indie.
+</p>
+  );
+}
 
 const ExternalLink = (link: Link) => {
   return (
@@ -65,16 +77,25 @@ const ExternalLink = (link: Link) => {
 };
 
 export default function HomePage() {
+  const { dict, locale } = useI18n();
+  const externalLinks: Link[] = [
+    {
+      name: "LinkedIn",
+      description: dict.home.links.linkedinDescription,
+      url: "https://linkedin.com/in/guslwl",
+      icon: <SiLinkedin className="fill-[#0077B5] dark:fill-zinc-200" />,
+    },
+    {
+      name: "GitHub",
+      description: dict.home.links.githubDescription,
+      url: "https://github.com/guslwl",
+      icon: <SiGithub />,
+    },
+  ];
+
   return (
     <div className="flex flex-col gap-6">
-      <p className="text-sm">
-        Hello there! <br />
-        <br /> I&apos;m a <strong>Computer Science student</strong> by day and
-        an aspiring <strong>game dev </strong> by night. I&apos;m currently
-        sharpening my Full Stack skills by building fini, a personal finance
-        app, all while working toward my ultimate goal: living off my own indie
-        games.
-      </p>
+      {locale === "pt-BR" ? <HomeIntroPtBr /> : <HomeIntroEn />}
       <div className="divide-y divide-zinc-400 overflow-hidden rounded ring-1 ring-zinc-400 dark:divide-zinc-500 dark:ring-zinc-500">
         {externalLinks.map((link: Link) => (
           <ExternalLink key={link.url} {...link} />
@@ -99,7 +120,7 @@ export default function HomePage() {
           </div>
           <span className="-mt-2 inline-flex w-fit items-center gap-1 rounded-full bg-green-100 px-2 py-0.5 text-sm text-green-600 ring-1 ring-green-500 dark:bg-transparent dark:text-emerald-500 dark:ring-emerald-500">
             <div className="size-2 animate-pulse rounded-full bg-green-500 dark:bg-emerald-500" />
-            Online
+            {dict.home.online}
           </span>
         </div>
         <div className="flex flex-col gap-2">
@@ -108,7 +129,7 @@ export default function HomePage() {
             download="Gustavo-CV-en.pdf"
             className="flex flex-row items-center justify-center gap-3 rounded bg-sky-300 p-4 text-sky-800 ring-1 ring-sky-500 transition-transform sm:hover:bg-sky-400 dark:bg-inherit dark:text-sky-500 dark:ring-sky-500 sm:sm:dark:hover:bg-zinc-800"
           >
-            <span className="text-nowrap">Download my CV</span>
+            <span className="text-nowrap">{dict.home.downloadCv}</span>
             <Download strokeWidth={1.4} className="size-5 max-sm:hidden" />
           </a>
         </div>

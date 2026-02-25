@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { Karla } from "next/font/google";
-import Link from "next/link";
 import "./globals.css";
 import { ScrollToTop } from "../components/scroll-to-top";
 import Script from "next/script";
 import dynamic from "next/dynamic";
+import { I18nProvider } from "../components/i18n-provider";
+import { Footer } from "../components/footer";
 // import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
@@ -52,40 +53,15 @@ export default function RootLayout({
         />
       </head>
       <body className={`${karla.className} min-h-full px-6`}>
-        {/*<Analytics />*/}
-        <Header />
-        <main className="mx-auto max-w-prose pb-4">
-          {children}
-          <ScrollToTop />
-        </main>
-        <footer className="mx-auto flex max-w-prose flex-col items-center gap-2 py-6 text-sm text-zinc-500 max-sm:items-start dark:text-zinc-400">
-          <div className="flex items-center gap-4">
-            <a
-              className="decoration-zinc-500 underline-offset-4 transition-transform sm:hover:underline dark:decoration-zinc-400"
-              href="https://github.com/guslwl/blog"
-              target="_blank"
-            >
-              Code
-            </a>
-            <Link
-              className="decoration-zinc-500 underline-offset-4 transition-transform sm:hover:underline dark:decoration-zinc-400"
-              target="_blank"
-              href="/rss.xml"
-            >
-              RSS Feed
-            </Link>
-            <a
-              className="decoration-zinc-500 underline-offset-4 transition-transform sm:hover:underline dark:decoration-zinc-400"
-              href="https://x.com/guslwl"
-              target="_blank"
-            >
-              @guslwl
-            </a>
-          </div>
-          <blockquote className="text-zinc-800 dark:text-zinc-300">
-            Smile, you&apos;re alive :)
-          </blockquote>
-        </footer>
+        <I18nProvider>
+          {/*<Analytics />*/}
+          <Header />
+          <main className="mx-auto max-w-prose pb-4">
+            {children}
+            <ScrollToTop />
+          </main>
+          <Footer />
+        </I18nProvider>
       </body>
     </html>
   );

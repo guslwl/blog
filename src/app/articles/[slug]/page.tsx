@@ -1,5 +1,7 @@
 import { getArticleData } from "@/src/lib/articles";
+import { detectRequestLocaleFromAcceptLanguage, t } from "@/src/lib/i18n";
 import { Article } from "../../../components/article";
+import { headers } from "next/headers";
 
 function Tag({ tag }: { tag: string }) {
   return (
@@ -14,6 +16,11 @@ export default async function ArticlePage({
 }: {
   params: { slug: string };
 }) {
+  const locale = detectRequestLocaleFromAcceptLanguage(
+    headers().get("accept-language"),
+  );
+  const dict = t(locale);
+
   let articleData;
   try {
     articleData = await getArticleData(params.slug);
@@ -21,13 +28,13 @@ export default async function ArticlePage({
     return (
       <div className="flex flex-col items-center justify-center gap-6 py-16">
         <h1 className="text-5xl max-sm:text-3xl">
-          This article doesn&apos;t exist.
+          {dict.article.notFoundTitle}
         </h1>
         <a
           href="/articles"
           className="underline decoration-sky-500 underline-offset-4 dark:decoration-sky-600"
         >
-          Read something else
+          {dict.article.notFoundCta}
         </a>
       </div>
     );
