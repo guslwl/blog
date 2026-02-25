@@ -22,10 +22,6 @@ cd blog
 npm install
 ```
 
-### Environment Variables
-
-Copy the example env file and fill in your values:
-
 ### Running Locally
 
 ```bash
